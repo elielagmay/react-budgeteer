@@ -1,0 +1,41 @@
+version: '2'
+
+volumes:
+    data: {}
+
+services:
+    database:
+        image: postgres:9.4
+        environment:
+            POSTGRES_DB: app_db
+            POSTGRES_USER: app_user
+            POSTGRES_PASSWORD: app_pass
+        ports:
+            - '5432:5432'
+        volumes:
+            - data:/var/lib/postgresql/data
+
+    backend:
+        build: ./backend/
+        command: ./manage.py runserver 0.0.0.0:8000
+        links:
+            - database
+        depends_on:
+            - database
+        ports:
+            - '8000:8000'
+        volumes:
+            - .:/app
+
+    frontend:
+        image: node:8.9.3
+        working_dir: /app/frontend
+        command: yarn run develop
+        links:
+            - backend
+        depends_on:
+            - backend
+        ports:
+            - '9000:9000'
+        volumes:
+            - .:/app

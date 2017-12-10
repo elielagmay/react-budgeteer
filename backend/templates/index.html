@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>React x Django Seed</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    {% if WEBPACK_CSS_BUNDLE %}
+        <link rel="stylesheet" href="{% static WEBPACK_CSS_BUNDLE %}">
+    {% endif %}
+</head>
+<body>
+    <div id="root"></div>
+    {% if WEBPACK_JS_BUNDLE %}
+        <script src="{% static WEBPACK_JS_BUNDLE %}"></script>
+    {% endif %}
+    {% if WEBPACK_DEV_BUNDLE %}
+        <script src="{{ WEBPACK_DEV_BUNDLE }}"></script>
+    {% endif %}
+</body>
+</html>
