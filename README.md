@@ -1,7 +1,6 @@
-### React x Django Seed
+A budgeting application inspired by [ledger-cli](https://github.com/ledger/ledger)
 
-- Docker
-- PostgreSQL
-- Django
-- React
-- Webpack
+- Split Transactions
+- Multiple Accounts
+- Multiple Currencies and Commodities
+- Goal Setting and Reports
