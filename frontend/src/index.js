@@ -1,12 +1,14 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { store } from './store'
+import App from './app/App'
 
-const App = () => (
-  <h1>Hello World!</h1>
+const node = (
+  <Provider store={store}>
+    <App />
+  </Provider>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'))
-
-export default App
-export { App }
+ReactDOM.render(node, document.getElementById('root'))
