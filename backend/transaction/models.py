@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.db import models
+from app.utils import get_balances
 
 
 class Transaction(models.Model):
@@ -24,9 +25,12 @@ class Transaction(models.Model):
             ' - {}'.format(self.description) if self.description else ''
         )
 
-    def clean(self):
-        # TODO - ensure transaction entries are balanced
-        pass
+    def is_balanced(self):
+        entries = self.entries.all()
+        balance = get_balances(entries, convert=True)
+        unbalanced = [v for v in balance if v['amount'] != 0]
+        return len(unbalanced) == 0
+    is_balanced.boolean = True
 
 
 class Entry(models.Model):
