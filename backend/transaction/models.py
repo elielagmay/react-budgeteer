@@ -79,6 +79,9 @@ class Entry(models.Model):
         if self.price is not None and ledger != self.price.primary.ledger:
             errors['price'] = 'Selected price is invalid'
 
+        if self.price is not None and self.price.primary != self.commodity:
+            errors['price'] = 'Selected price must match commodity'
+
         if errors:
             raise ValidationError(errors)
 
