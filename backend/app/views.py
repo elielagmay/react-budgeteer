@@ -1,7 +1,10 @@
 import json
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
 
 
 def index(request):
@@ -33,3 +36,6 @@ def index(request):
 
 def health_check(request):
     return HttpResponse('OK')
+
+
+graphql = csrf_exempt(login_required(GraphQLView.as_view(graphiql=True)))
