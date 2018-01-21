@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -19,6 +20,10 @@ class Commodity(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_quantized_amount(self, amount):
+        exponent = Decimal(10) ** -self.decimal_places
+        return amount.quantize(exponent)
 
 
 class Price(models.Model):
