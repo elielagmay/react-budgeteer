@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
+    'django_filters',
+    'graphene_django',
 
     'account',
     'commodity',
@@ -98,3 +100,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 WEBPACK_DEV_BUNDLE = 'http://localhost:9000/bundle.js'
+
+GRAPHENE = {
+    'SCHEMA': 'app.schema.schema'
+}
