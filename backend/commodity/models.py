@@ -46,12 +46,15 @@ class Price(models.Model):
         ordering = ('-date', )
 
     def __str__(self):
-        return u'{} (1 {} = {} {})'.format(
+        return u'{} (1 {} = {:,} {})'.format(
             self.date.strftime('%Y-%m-%d'),
             self.primary,
-            self.amount,
+            self.get_quantized_amount(),
             self.secondary
         )
+
+    def get_quantized_amount(self):
+        return self.secondary.get_quantized_amount(self.amount)
 
     def clean(self):
         if self.primary.ledger != self.secondary.ledger:
