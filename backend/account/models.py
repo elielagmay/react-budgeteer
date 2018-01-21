@@ -1,4 +1,5 @@
 from django.db import models
+from app.utils import get_balances
 
 
 class Category(models.Model):
@@ -36,3 +37,7 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_balances(self):
+        entries = self.entries.all()
+        return get_balances(entries, convert=False)
