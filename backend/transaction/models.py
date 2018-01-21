@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -76,3 +77,16 @@ class Entry(models.Model):
 
         if errors:
             raise ValidationError(errors)
+
+    def get_amount_tuple(self, convert=False):
+        amount = Decimal(str(self.amount))
+        commodity = self.commodity
+
+        if not amount.is_finite():
+            raise ValueError('amount is not a finite number')
+
+        if convert and self.price is not None:
+            commodity = self.price.secondary
+            amount *= self.price.amount
+
+        return (commodity.get_quantized_amount(amount), commodity)
