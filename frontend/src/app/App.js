@@ -1,25 +1,30 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { initialize } from './actions'
-import { getMessage } from './reducers'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import injectSheet from 'react-jss'
+import Sidebar from '../sidebar/Sidebar'
+import NotFoundPage from '../notFound/NotFoundPage'
+import { styles } from './styles'
 
 class App extends React.Component {
-  componentDidMount () {
-    setTimeout(this.props.initialize, 2000)
-  }
-
   render () {
-    return <h1>{this.props.message}</h1>
+    const { classes } = this.props
+
+    return (
+      <BrowserRouter>
+        <div className={classes.app}>
+          <div className={classes.side}>
+            <Sidebar />
+          </div>
+          <div className={classes.main}>
+            <Switch>
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
-  message: getMessage(state)
-})
-
-const mapDispatchToProps = {
-  initialize
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default injectSheet(styles)(App)
 export { App }
