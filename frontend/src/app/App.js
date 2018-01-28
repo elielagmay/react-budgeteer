@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom'
 import injectSheet from 'react-jss'
 import Sidebar from '../sidebar/Sidebar'
 import NotFoundPage from '../notFound/NotFoundPage'
@@ -17,6 +17,11 @@ class App extends React.Component {
           </div>
           <div className={classes.main}>
             <Switch>
+              <Redirect exact from='/' to='/budgets' />
+              <Route path='/budgets' component={NotFoundPage} />
+              <Route path='/transactions' component={NotFoundPage} />
+              <Route path='/reports' component={NotFoundPage} />
+              <Route path='/account/:id' component={NotFoundPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>
