@@ -24,7 +24,8 @@ class Sidebar extends React.Component {
               key={page.url}
               to={'/' + page.url}
               className={classes.link}
-              activeClassName={classes.activeLink}
+              activeClassName='isActive'
+              exact={true}
             >
               {page.title}
             </NavLink>
@@ -36,7 +37,8 @@ class Sidebar extends React.Component {
               key={account.id}
               to={'/account/' + account.id}
               className={classes.sublink}
-              activeClassName={classes.activeSublink}
+              activeClassName='isActive'
+              exact={true}
             >
               {account.title}
             </NavLink>

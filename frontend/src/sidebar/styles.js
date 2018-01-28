@@ -45,6 +45,10 @@ export const styles = {
     userSelect: 'none',
     '&:hover': {
       color: '#ECEFF1'
+    },
+    '&.isActive': {
+      color: '#ECEFF1',
+      background: '#263238'
     }
   },
   link: {
@@ -53,18 +57,8 @@ export const styles = {
     letterSpacing: '0.5px',
     textTransform: 'uppercase'
   },
-  activeLink: {
-    extend: 'link',
-    color: '#ECEFF1',
-    background: '#263238'
-  },
   sublink: {
     extend: 'baseLink',
     padding: '6px 24px'
-  },
-  activeSublink: {
-    extend: 'sublink',
-    color: '#ECEFF1',
-    background: '#263238'
   }
 }
