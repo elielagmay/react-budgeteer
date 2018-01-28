@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
 
-def index(request):
+def index(request, id=None):
     context = {}
 
     if settings.DEBUG:
