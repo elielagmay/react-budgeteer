@@ -1,6 +1,5 @@
 import React from 'react'
 import injectSheet from 'react-jss'
-import { getAccounts } from './reducers'
 import { styles } from './styles'
 
 class SidebarGroup extends React.Component {
