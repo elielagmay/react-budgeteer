@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom'
 import injectSheet from 'react-jss'
 import Sidebar from '../sidebar/Sidebar'
+import BudgetPage from '../budget/BudgetPage'
+import TransactionPage from '../transaction/TransactionPage'
 import NotFoundPage from '../notFound/NotFoundPage'
 import { styles } from './styles'
 
@@ -18,8 +20,8 @@ class App extends React.Component {
           <div className={classes.main}>
             <Switch>
               <Redirect exact from='/' to='/budgets' />
-              <Route path='/budgets' component={NotFoundPage} />
-              <Route path='/transactions' component={NotFoundPage} />
+              <Route path='/budgets' component={BudgetPage} />
+              <Route path='/transactions' component={TransactionPage} />
               <Route path='/reports' component={NotFoundPage} />
               <Route path='/account/:id' component={NotFoundPage} />
               <Route component={NotFoundPage} />
