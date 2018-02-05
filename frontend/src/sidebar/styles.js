@@ -1,7 +1,6 @@
 export const styles = {
   sidebar: {
     background: '#37474F',
-    fontSize: '0.875em',
     height: '100vh',
     overflow: 'hidden',
     overflowY: 'auto',
@@ -28,7 +27,7 @@ export const styles = {
   groupTitle: {
     color: '#ECEFF1',
     cursor: 'default',
-    fontSize: '0.8125em',
+    fontSize: '11px',
     fontWeight: 500,
     letterSpacing: '0.8px',
     padding: '8px 24px',
@@ -53,7 +52,6 @@ export const styles = {
   },
   link: {
     extend: 'baseLink',
-    fontWeight: 500,
     letterSpacing: '0.5px',
     textTransform: 'uppercase'
   },
