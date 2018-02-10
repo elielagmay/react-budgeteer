@@ -7,7 +7,7 @@ export const styles = {
     height: '100%'
   },
   head: {
-    background: '#37474F',
+    background: '#00BCD4',
     // borderBottom: border,
     color: '#FFFFFF',
     fontSize: '17px',
@@ -60,7 +60,7 @@ export const styles = {
       background: '#EEEEEE',
     },
     '&.isActive': {
-      color: '#E91E63'
+      color: '#00BCD4'
     },
     '& .material-icons': {
       color: 'rgba(0,0,0,0.54)',
@@ -68,7 +68,7 @@ export const styles = {
       verticalAlign: 'middle'
     },
     '&.isActive .material-icons': {
-      color: '#E91E63'
+      color: '#00BCD4'
     }
   }
 }

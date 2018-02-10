@@ -1,7 +1,7 @@
 export const styles = {
   page: {},
   head: {
-    background: '#37474F',
+    background: '#00BCD4',
     // borderBottom: '1px #E0E0E0 solid',
     color: '#FFFFFF',
     fontSize: '1rem',
