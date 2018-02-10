@@ -32,6 +32,10 @@ class Transaction(models.Model):
         return len(unbalanced) == 0
     is_balanced.boolean = True
 
+    def is_cleared(self):
+        return not self.entries.filter(is_cleared=False).exists()
+    is_cleared.boolean = True
+
 
 class Entry(models.Model):
     transaction = models.ForeignKey(
