@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom'
 import injectSheet from 'react-jss'
+import Navbar from '../navbar/Navbar'
 import Sidebar from '../sidebar/Sidebar'
 import BudgetPage from '../budget/BudgetPage'
 import TransactionPage from '../transaction/TransactionPage'
@@ -13,7 +14,10 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <div className={classes.app}>
+        <div className={classes.root}>
+          <div className={classes.head}>
+            <Navbar />
+          </div>
           <div className={classes.side}>
             <Sidebar />
           </div>

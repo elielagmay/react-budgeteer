@@ -15,16 +15,13 @@ class TransactionPage extends React.Component {
   render () {
     const { classes, transactionList } = this.props
     return (
-      <div className={classes.page}>
-        <div className={classes.head}></div>
-        <div className={classes.list}>
-          {transactionList.map(transaction => (
-            <Transaction
-              key={transaction.id}
-              transaction={transaction}
-            />
-          ))}
-        </div>
+      <div className={classes.root}>
+        {transactionList.map(transaction => (
+          <Transaction
+            key={transaction.id}
+            transaction={transaction}
+          />
+        ))}
       </div>
     )
   }

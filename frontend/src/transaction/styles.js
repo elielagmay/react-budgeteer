@@ -1,22 +1,5 @@
 export const styles = {
-  page: {},
-  head: {
-    background: '#00BCD4',
-    // borderBottom: '1px #E0E0E0 solid',
-    color: '#FFFFFF',
-    fontSize: '1rem',
-    fontWeight: '500',
-    height: '64px',
-    lineHeight: '64px',
-    padding: '0 24px',
-    position: 'sticky',
-    top: '0',
-    textOverflow: 'ellipsis',
-    userSelect: 'none',
-    whiteSpace: 'nowrap',
-    zIndex: '1000',
-  },
-  list: {
+  root: {
     padding: '16px 16px 16px 32px'
   },
   transaction: {

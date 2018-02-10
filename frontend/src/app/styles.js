@@ -24,17 +24,23 @@ export const styles = {
       width: '100%'
     }
   },
-  app: {
-    display: 'flex'
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    height: '100vh'
+  },
+  head: {
+    flex: '0 0 100vw',
+    height: '64px'
   },
   side: {
     flex: '0 0 280px',
-    height: '100vh',
+    height: 'calc(100vh - 64px)',
     width: '280px'
   },
   main: {
     flex: '1 1 auto',
-    height: '100vh',
+    height: 'calc(100vh - 64px)',
     overflow: 'auto'
   }
 }

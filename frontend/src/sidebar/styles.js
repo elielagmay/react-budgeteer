@@ -2,30 +2,9 @@ const border = '1px #E0E0E0 solid'
 
 export const styles = {
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%'
-  },
-  head: {
-    background: '#00BCD4',
-    // borderBottom: border,
-    color: '#FFFFFF',
-    fontSize: '17px',
-    fontWeight: '500',
-    flex: '0 0 auto',
-    height: '64px',
-    letterSpacing: '2px',
-    lineHeight: '64px',
-    padding: '0 16px',
-    textOverflow: 'ellipsis',
-    textTransform: 'uppercase',
-    userSelect: 'none',
-    whiteSpace: 'nowrap',
-  },
-  main: {
-    flex: '1 1 auto',
+    height: '100%',
     overflow: 'hidden',
-    overflowY: 'auto',
+    overflowY: 'auto'
   },
   group: {
     padding: '8px 0',

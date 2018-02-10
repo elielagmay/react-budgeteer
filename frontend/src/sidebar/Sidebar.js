@@ -19,38 +19,33 @@ class Sidebar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.head}>
-          Budgeteer
-        </div>
-        <div className={classes.main}>
-          <SidebarGroup>
-            {pages.map(page => (
-              <NavLink
-                key={page.url}
-                to={'/' + page.url}
-                className={classes.link}
-                activeClassName='isActive'
-                exact={true}
-              >
-                <i className='material-icons'>{page.icon}</i>
-                <span>{page.title}</span>
-              </NavLink>
-            ))}
-          </SidebarGroup>
-          <SidebarGroup title='Accounts'>
-            {accounts.map(account => (
-              <NavLink
-                key={account.id}
-                to={'/account/' + account.id}
-                className={classes.link}
-                activeClassName='isActive'
-                exact={true}
-              >
-                {account.title}
-              </NavLink>
-            ))}
-          </SidebarGroup>
-        </div>
+        <SidebarGroup>
+          {pages.map(page => (
+            <NavLink
+              key={page.url}
+              to={'/' + page.url}
+              className={classes.link}
+              activeClassName='isActive'
+              exact={true}
+            >
+              <i className='material-icons'>{page.icon}</i>
+              <span>{page.title}</span>
+            </NavLink>
+          ))}
+        </SidebarGroup>
+        <SidebarGroup title='Accounts'>
+          {accounts.map(account => (
+            <NavLink
+              key={account.id}
+              to={'/account/' + account.id}
+              className={classes.link}
+              activeClassName='isActive'
+              exact={true}
+            >
+              {account.title}
+            </NavLink>
+          ))}
+        </SidebarGroup>
       </div>
     )
   }
