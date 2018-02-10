@@ -39,5 +39,5 @@ class Account(models.Model):
         return self.name
 
     def get_balances(self):
-        entries = self.entries.all()
+        entries = self.entries.filter(is_cleared=True)
         return get_balances(entries, convert=False)
