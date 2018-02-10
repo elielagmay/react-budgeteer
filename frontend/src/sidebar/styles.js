@@ -1,62 +1,74 @@
+const border = '1px #E0E0E0 solid'
+
 export const styles = {
-  sidebar: {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%'
+  },
+  head: {
     background: '#37474F',
-    height: '100vh',
+    // borderBottom: border,
+    color: '#FFFFFF',
+    fontSize: '17px',
+    fontWeight: '500',
+    flex: '0 0 auto',
+    height: '64px',
+    letterSpacing: '2px',
+    lineHeight: '64px',
+    padding: '0 16px',
+    textOverflow: 'ellipsis',
+    textTransform: 'uppercase',
+    userSelect: 'none',
+    whiteSpace: 'nowrap',
+  },
+  main: {
+    flex: '1 1 auto',
     overflow: 'hidden',
     overflowY: 'auto',
-    '&::-webkit-scrollbar': {
-      background: '#37474F',
-      height: '12px',
-      width: '12px'
-    },
-    '&::-webkit-scrollbar-thumb': {
-      background: '#B0BEC5',
-      border: '3px #37474F solid',
-      borderRadius: '6px'
-    }
   },
   group: {
-    padding: '16px 0',
-    '&:not(:first-child)': {
-      borderTop: '1px #455A64 solid'
-    },
+    padding: '8px 0',
     '&:not(:last-child)': {
-      borderBottom: '1px #263238 solid'
+      borderBottom: border
     }
   },
   groupTitle: {
-    color: '#ECEFF1',
+    color: 'rgba(0,0,0,0.54)',
     cursor: 'default',
-    fontSize: '11px',
-    fontWeight: 500,
-    letterSpacing: '0.8px',
-    padding: '8px 24px',
-    textTransform: 'uppercase',
+    fontWeight: '500',
+    height: '48px',
+    lineHeight: '48px',
+    padding: '0 16px',
     userSelect: 'none'
   },
-  baseLink: {
-    color: '#B0BEC5',
+  link: {
+    color: 'rgba(0,0,0,0.87)',
     cursor: 'pointer',
     display: 'block',
-    padding: '8px 24px',
+    fontWeight: '500',
+    height: '48px',
+    lineHeight: '48px',
+    overflow: 'hidden',
+    padding: '0 16px',
     textDecoration: 'none',
-    transition: 'all 0.12s ease-in-out',
+    textOverflow: 'ellipsis',
+    transition: 'all 150ms ease-in',
     userSelect: 'none',
+    whiteSpace: 'nowrap',
     '&:hover': {
-      color: '#ECEFF1'
+      background: '#EEEEEE',
     },
     '&.isActive': {
-      color: '#ECEFF1',
-      background: '#263238'
+      color: '#E91E63'
+    },
+    '& .material-icons': {
+      color: 'rgba(0,0,0,0.54)',
+      marginRight: '36px',
+      verticalAlign: 'middle'
+    },
+    '&.isActive .material-icons': {
+      color: '#E91E63'
     }
-  },
-  link: {
-    extend: 'baseLink',
-    letterSpacing: '0.5px',
-    textTransform: 'uppercase'
-  },
-  sublink: {
-    extend: 'baseLink',
-    padding: '6px 24px'
   }
 }

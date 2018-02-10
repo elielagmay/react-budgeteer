@@ -10,9 +10,9 @@ export default (state = initialState, action) => {
     [actions.SIDEBAR_INIT]: () => ({
       ...state,
       pages: [
-        {url: 'budgets', title: 'Budgets'},
-        {url: 'transactions', title: 'Transactions'},
-        {url: 'reports', title: 'Reports'}
+        {url: 'budgets', icon: 'mail', title: 'Budgets'},
+        {url: 'transactions', icon: 'inbox', title: 'Transactions'},
+        {url: 'reports', icon: 'pie_chart', title: 'Reports'}
       ],
       accounts: [
         {id: 1, title: 'Cash'},
