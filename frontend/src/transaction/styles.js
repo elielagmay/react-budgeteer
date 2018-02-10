@@ -17,7 +17,7 @@ export const styles = {
     zIndex: '1000',
   },
   list: {
-    padding: '24px'
+    padding: '16px 16px 16px 32px'
   },
   transaction: {
     background: '#FFFFFF',
@@ -68,8 +68,9 @@ export const styles = {
     },
   },
   fields: {
-    display: 'flex',
     alignItems: 'center',
+    display: 'flex',
+    overflow: 'hidden',
     '&> .material-icons': {
       color: 'rgba(0,0,0,0.54)',
       cursor: 'pointer',
@@ -106,8 +107,7 @@ export const styles = {
     },
     '&:nth-child(2)': {
       color: 'rgba(0,0,0,0.87)',
-      flex: '0 0 auto',
-      width: '320px'
+      flex: '0 0 30%'
     },
     '&:nth-child(3)': {
       flex: '1 1 auto'
