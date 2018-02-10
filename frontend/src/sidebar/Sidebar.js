@@ -1,6 +1,7 @@
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import injectSheet from 'react-jss'
 import SidebarGroup from './SidebarGroup'
@@ -59,6 +60,7 @@ const mapDispatchToProps = {
 }
 
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   injectSheet(styles)
 )(Sidebar)
