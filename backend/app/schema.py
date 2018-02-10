@@ -5,6 +5,7 @@ import account.schema
 import commodity.schema
 import ledger.schema
 import transaction.schema
+import user.schema
 
 
 class RootQuery(
@@ -12,6 +13,7 @@ class RootQuery(
     commodity.schema.Query,
     ledger.schema.Query,
     transaction.schema.Query,
+    user.schema.Query,
     ObjectType
 ):
     pass
