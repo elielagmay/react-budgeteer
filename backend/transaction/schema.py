@@ -25,13 +25,13 @@ class EntryNode(DjangoObjectType):
 class Query(object):
     transaction_list = DjangoFilterConnectionField(
         TransactionNode,
-        ledger=graphene.String(required=True)
+        ledger_id=graphene.ID(required=True)
     )
 
     def resolve_transaction_list(self, info, **kwargs):
-        ledger = from_global_id(kwargs.get('ledger'))
-        ledger_id = int(ledger[1])
+        node, ledger_id = from_global_id(kwargs.get('ledger_id'))
+        assert node == 'LedgerNode'
         return models.Transaction.objects.filter(
             ledger_id=ledger_id,
             ledger__creator=info.context.user
-        )
+        ).order_by('-date', 'id')
