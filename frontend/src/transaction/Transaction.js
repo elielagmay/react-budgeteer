@@ -1,3 +1,4 @@
+import moment from 'moment-timezone'
 import React from 'react'
 import injectSheet from 'react-jss'
 import Entry from './Entry'
@@ -22,6 +23,8 @@ class Transaction extends React.Component {
   render () {
     const { transaction, classes } = this.props
     const { isExpanded } = this.state
+    const date = moment.tz(transaction.date, moment.ISO_8601, 'UTC')
+
     return (
       <div
         className={classes.transaction + (isExpanded ? ' isExpanded' : '')}
@@ -30,7 +33,7 @@ class Transaction extends React.Component {
         <div className={classes.fields}>
           <input
             className={classes.input}
-            defaultValue={transaction.date.format('DD MMM YYYY')}
+            defaultValue={date.format('DD MMM YYYY')}
             readOnly={!isExpanded}
           />
           <input

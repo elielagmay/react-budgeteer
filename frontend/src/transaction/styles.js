@@ -98,5 +98,15 @@ export const styles = {
     '&:focus': {
       borderBottomColor: '#00BCD4'
     },
+  },
+  spinner: {
+    height: '48px',
+    padding: '16px 0',
+    textAlign: 'center'
+  },
+  fetcher: {
+    height: '48px',
+    padding: '16px 0',
+    textAlign: 'center'
   }
 }
