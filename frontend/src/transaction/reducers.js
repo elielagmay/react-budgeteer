@@ -2,20 +2,23 @@ import moment from 'moment-timezone'
 import * as actions from './actions'
 
 export const initialState = {
-  transactionList: []
+  expanded: {}
 }
 
 export default (state = initialState, action) => {
   const mapping = {
-    [actions.TRANSACTION_INIT]: () => ({
+    [actions.TXN_LIST_EXPAND]: (payload) => ({
       ...state,
-      transactionList: [...Array(50).keys()].map(x => ({
-        id: x,
-        date: moment().subtract(x * x, 'day'),
-        payee: 'Payee ' + x,
-        description: (x % 7) ? 'Description ' + x : '',
-        entries: []
-      }))
+      expanded: {
+        [payload.transactionId]: true
+      }
+    }),
+
+    [actions.TXN_LIST_COLLAPSE]: (payload) => ({
+      ...state,
+      expanded: {
+        [payload.transactionId]: false
+      }
     })
   }
 
@@ -25,4 +28,4 @@ export default (state = initialState, action) => {
 
 export const getRootState = (state) => state.transaction
 
-export const getTransactionList = (state) => getRootState(state).transactionList
+export const getExpanded = (state, id) => getRootState(state).expanded[id]

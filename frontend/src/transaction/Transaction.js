@@ -1,34 +1,32 @@
 import moment from 'moment-timezone'
 import React from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
-import Entry from './Entry'
+import { expandTransaction, collapseTransaction } from './actions'
+import { getExpanded } from './reducers'
 import { styles } from './styles'
 
-class Transaction extends React.Component {
-  constructor (props) {
-    super(props)
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isExpanded: false
-    }
+export class Transaction extends React.Component {
+  expand () {
+    this.props.expandTransaction(this.props.transaction.id)
   }
 
-  toggle (isExpanded) {
-    return (event) => {
-      event.stopPropagation()
-      this.setState({isExpanded})
-    }
+  collapse () {
+    this.props.collapseTransaction(this.props.transaction.id)
   }
 
   render () {
-    const { transaction, classes } = this.props
-    const { isExpanded } = this.state
+    const { classes, transaction, isExpanded } = this.props
     const date = moment.tz(transaction.date, moment.ISO_8601, 'UTC')
 
     return (
       <div
         className={classes.transaction + (isExpanded ? ' isExpanded' : '')}
-        onClick={this.toggle(true)}
+        onClick={isExpanded ? null : this.expand.bind(this)}
+        aria-expanded={isExpanded}
+        role='button'
+        tabindex='0'
       >
         <div className={classes.fields}>
           <input
@@ -50,7 +48,7 @@ class Transaction extends React.Component {
           />
           <i
             className='material-icons'
-            onClick={isExpanded ? this.toggle(false) : null}
+            onClick={isExpanded ? this.collapse.bind(this) : null}
           >
             {isExpanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
           </i>
@@ -60,5 +58,16 @@ class Transaction extends React.Component {
   }
 }
 
-export default injectSheet(styles)(Transaction)
-export { Transaction }
+const mapStateToProps = (state, props) => ({
+  isExpanded: getExpanded(state, props.transaction.id)
+})
+
+const mapDispatchToProps = {
+  expandTransaction,
+  collapseTransaction
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  injectSheet(styles)
+)(Transaction)

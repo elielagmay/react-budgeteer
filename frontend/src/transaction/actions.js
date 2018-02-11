@@ -1,5 +1,16 @@
-export const TRANSACTION_INIT = 'TRANSACTION_INIT'
+export const TXN_LIST_EXPAND = 'TXN_LIST_EXPAND'
+export const TXN_LIST_COLLAPSE = 'TXN_LIST_COLLAPSE'
 
-export const initialize = () => ({
-  type: TRANSACTION_INIT
+export const expandTransaction = (transactionId) => ({
+  type: TXN_LIST_EXPAND,
+  payload: {
+    transactionId
+  }
+})
+
+export const collapseTransaction = (transactionId) => ({
+  type: TXN_LIST_COLLAPSE,
+  payload: {
+    transactionId
+  }
 })
