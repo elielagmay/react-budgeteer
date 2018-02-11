@@ -8,7 +8,22 @@ import BudgetPage from '../budget/BudgetPage'
 import TransactionList from '../transaction/TransactionList'
 import NotFoundPage from '../notFound/NotFoundPage'
 import { userQuery } from './queries'
-import { styles } from './styles'
+
+export const styles = (theme) => ({
+  '@global': {
+    body: {
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
+      fontFamily: theme.typography.fontFamily,
+      fontSize: theme.typography.fontSize
+    }
+  },
+  root: {
+    marginLeft: '320px',
+    marginTop: '64px',
+    padding: '24px'
+  }
+})
 
 export const App = ({ classes, data }) => {
   if (data.loading) {
@@ -26,13 +41,11 @@ export const App = ({ classes, data }) => {
 
   return (
     <BrowserRouter>
-      <div className={classes.root}>
+      <div>
         <Reboot />
         <Navbar user={data.user} />
-        <div className={classes.side}>
-          <Sidebar ledger={ledger} />
-        </div>
-        <div className={classes.main}>
+        <Sidebar ledger={ledger} />
+        <div className={classes.root}>
           <Switch>
             <Route path='/settings' component={NotFoundPage} />
             <Route path='/ledgers' component={NotFoundPage} />
