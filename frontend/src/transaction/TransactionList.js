@@ -3,26 +3,17 @@ import { compose, graphql } from 'react-apollo'
 import { Button, CircularProgress } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
+import TransactionLoadMore from './TransactionLoadMore'
 import { transactionQuery } from './queries'
 
 export const styles = (theme) => ({
   root: {
     position: 'relative'
   },
-  fetchMore: {
-    paddingTop: `${theme.spacing.unit * 3}px`,
-    position: 'relative',
-    textAlign: 'center'
-  },
-  fetchInitProgress: {
+  progress: {
     position: 'absolute',
     top: 'calc(50vh - 96px)',
-    left: 'calc(50% - 32px)',
-  },
-  fetchMoreProgress: {
-    position: 'absolute',
-    top: '50%',
-    left: 'calc(50% - 12px)',
+    left: 'calc(50% - 32px)'
   }
 })
 
@@ -59,28 +50,17 @@ export class TransactionList extends React.Component {
       ? data.transactionList.edges.map(e => e.node)
       : []
 
+    const fetchMore = this.fetchMore.bind(this)
+
     return (
       <div className={classes.root}>
         {transactionList.map(transaction => (
-          <Transaction
-            key={transaction.id}
-            transaction={transaction}
-          />
+          <Transaction key={transaction.id} transaction={transaction} />
         ))}
         {transactionList.length === 0 ? (
-          <CircularProgress size={64} className={classes.fetchInitProgress} />
+          <CircularProgress size={64} className={classes.progress} />
         ) : (
-          <div className={classes.fetchMore}>
-            <Button
-              onClick={this.fetchMore.bind(this)}
-              disabled={data.loading}
-            >
-              Load more
-            </Button>
-            {!data.loading ? null : (
-              <CircularProgress size={24} className={classes.fetchMoreProgress} />
-            )}
-          </div>
+          <TransactionLoadMore loading={data.loading} onClick={fetchMore} />
         )}
       </div>
     )
