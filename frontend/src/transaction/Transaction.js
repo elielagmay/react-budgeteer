@@ -89,46 +89,50 @@ export class Transaction extends React.Component {
             </div>
           )}
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
-          <div className={classes.fields}>
-            <div className={classes.date}>
-              <TextField
-                type='date'
-                label='Date'
-                id={dateId}
-                defaultValue={date.format('YYYY-MM-DD')}
-                fullWidth
-                required
-              />
+        {!expanded ? null : (
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.fields}>
+              <div className={classes.date}>
+                <TextField
+                  type='date'
+                  label='Date'
+                  id={dateId}
+                  defaultValue={date.format('YYYY-MM-DD')}
+                  fullWidth
+                  required
+                />
+              </div>
+              <div className={classes.payee}>
+                <TextField
+                  type='text'
+                  label='Payee'
+                  id={payeeId}
+                  defaultValue={transaction.payee}
+                  fullWidth
+                />
+              </div>
+              <div className={classes.description}>
+                <TextField
+                  type='text'
+                  label='Description'
+                  id={descriptionId}
+                  defaultValue={transaction.description}
+                  fullWidth
+                />
+              </div>
             </div>
-            <div className={classes.payee}>
-              <TextField
-                type='text'
-                label='Payee'
-                id={payeeId}
-                defaultValue={transaction.payee}
-                fullWidth
-              />
-            </div>
-            <div className={classes.description}>
-              <TextField
-                type='text'
-                label='Description'
-                id={descriptionId}
-                defaultValue={transaction.description}
-                fullWidth
-              />
-            </div>
-          </div>
-        </ExpansionPanelDetails>
-        <ExpansionPanelActions>
-          <Button size='small' onClick={this.onCollapse.bind(this)}>
-            Cancel
-          </Button>
-          <Button size='small' color='primary'>
-            Save
-          </Button>
-        </ExpansionPanelActions>
+          </ExpansionPanelDetails>
+        )}
+        {!expanded ? null : (
+          <ExpansionPanelActions>
+            <Button size='small' onClick={this.onCollapse.bind(this)}>
+              Cancel
+            </Button>
+            <Button size='small' color='primary'>
+              Save
+            </Button>
+          </ExpansionPanelActions>
+        )}
       </ExpansionPanel>
     )
   }
