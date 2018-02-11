@@ -15,7 +15,36 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore'
 import TextField from '../ui/TextField'
 import { expandTransaction, collapseTransaction } from './actions'
 import { getExpanded } from './reducers'
-import { styles } from './styles'
+
+export const styles = (theme) => ({
+  fields: {
+    alignItems: 'center',
+    display: 'flex',
+    width: '100%'
+  },
+  date: {
+    color: theme.palette.text.secondary,
+    flex: '0 0 auto',
+    marginRight: `${theme.spacing.unit * 2}px`,
+    whiteSpace: 'nowrap',
+    width: '120px'
+  },
+  payee: {
+    flex: '0 0 33%',
+    marginRight: `${theme.spacing.unit * 2}px`,
+    maxWidth: '360px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
+  },
+  description: {
+    color: theme.palette.text.secondary,
+    flex: '1 1 auto',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
+  }
+})
 
 export class Transaction extends React.Component {
   onToggle (event, expanded) {
@@ -43,7 +72,7 @@ export class Transaction extends React.Component {
       <ExpansionPanel expanded={expanded} onChange={this.onToggle.bind(this)}>
         <ExpansionPanelSummary expandIcon={icon}>
           {expanded ? (
-            <Typography className={classes.editTitle}>
+            <Typography variant='body2'>
               Edit Transaction
             </Typography>
           ) : (

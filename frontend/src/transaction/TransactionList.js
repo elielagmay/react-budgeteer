@@ -3,7 +3,14 @@ import { compose, graphql } from 'react-apollo'
 import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
 import { transactionQuery } from './queries'
-import { styles } from './styles'
+
+export const styles = (theme) => ({
+  fetcher: {
+    height: '48px',
+    padding: `${theme.spacing.unit * 2}px 0`,
+    textAlign: 'center'
+  }
+})
 
 export class TransactionList extends React.Component {
   fetchMore () {
@@ -42,7 +49,7 @@ export class TransactionList extends React.Component {
       : []
 
     return (
-      <div className={classes.root}>
+      <div>
         {transactionList.map(transaction => (
           <Transaction
             key={transaction.id}

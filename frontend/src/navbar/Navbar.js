@@ -1,13 +1,23 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography } from 'material-ui'
 import { withStyles  } from 'material-ui/styles'
-import { styles } from './styles'
 
-class Navbar extends React.Component {
+export const styles = {
+  root: {
+    color: '#FFFFFF'
+  },
+  logo: {
+    letterSpacing: '2px',
+    textTransform: 'uppercase',
+    marginRight: 'auto'
+  }
+}
+
+export class Navbar extends React.Component {
   render () {
     const { classes, user } = this.props
     return (
-      <AppBar position='static' color='primary' className={classes.root}>
+      <AppBar position='fixed' color='primary' className={classes.root}>
         <Toolbar>
           <Typography variant='title' color='inherit' className={classes.logo}>
             Budgeteer
@@ -22,4 +32,3 @@ class Navbar extends React.Component {
 }
 
 export default withStyles(styles)(Navbar)
-export { Navbar }
