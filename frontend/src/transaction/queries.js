@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
-export const transactionQuery = gql`
-  query transactionQuery (
+export const TransactionListQuery = gql`
+  query TransactionListQuery (
     $ledgerId: ID!
     $cursor: String!
   ) {

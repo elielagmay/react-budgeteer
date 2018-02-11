@@ -7,7 +7,7 @@ import Sidebar from '../sidebar/Sidebar'
 import BudgetPage from '../budget/BudgetPage'
 import TransactionList from '../transaction/TransactionList'
 import NotFoundPage from '../notFound/NotFoundPage'
-import { userQuery } from './queries'
+import { AppUserQuery } from './queries'
 
 export const styles = (theme) => ({
   '@global': {
@@ -62,6 +62,6 @@ export const App = ({ classes, data }) => {
 }
 
 export default compose(
-  graphql(userQuery),
+  graphql(AppUserQuery),
   withStyles(styles)
 )(App)

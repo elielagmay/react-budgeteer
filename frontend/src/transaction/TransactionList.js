@@ -4,7 +4,7 @@ import { Button, CircularProgress } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
 import TransactionLoadMore from './TransactionLoadMore'
-import { transactionQuery } from './queries'
+import { TransactionListQuery } from './queries'
 
 export const styles = (theme) => ({
   root: {
@@ -21,7 +21,7 @@ export class TransactionList extends React.Component {
   fetchMore () {
     const { data, match } = this.props
     return data.fetchMore({
-      query: transactionQuery,
+      query: TransactionListQuery,
       notifyOnNetworkStatusChange: true,
       variables: {
         ledgerId: match.params.id,
@@ -76,6 +76,6 @@ const options = (props) => ({
 })
 
 export default compose(
-  graphql(transactionQuery, {options}),
+  graphql(TransactionListQuery, {options}),
   withStyles(styles)
 )(TransactionList)
