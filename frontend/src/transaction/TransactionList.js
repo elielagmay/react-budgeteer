@@ -1,21 +1,9 @@
 import React from 'react'
 import { compose, graphql } from 'react-apollo'
-import { Button, CircularProgress } from 'material-ui'
-import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
+import TransactionEmpty from './TransactionEmpty'
 import TransactionLoadMore from './TransactionLoadMore'
 import { TransactionListQuery } from './queries'
-
-export const styles = (theme) => ({
-  root: {
-    position: 'relative'
-  },
-  progress: {
-    position: 'absolute',
-    top: 'calc(50vh - 96px)',
-    left: 'calc(50% - 32px)'
-  }
-})
 
 export class TransactionList extends React.Component {
   fetchMore () {
@@ -45,20 +33,21 @@ export class TransactionList extends React.Component {
   }
 
   render () {
-    const { classes, data } = this.props
+    const { data } = this.props
     const transactionList = data.transactionList
       ? data.transactionList.edges.map(e => e.node)
       : []
 
     const fetchMore = this.fetchMore.bind(this)
+    const create = null
 
     return (
-      <div className={classes.root}>
+      <div>
         {transactionList.map(transaction => (
           <Transaction key={transaction.id} transaction={transaction} />
         ))}
         {transactionList.length === 0 ? (
-          <CircularProgress size={64} className={classes.progress} />
+          <TransactionEmpty loading={data.loading} onClick={create} />
         ) : (
           <TransactionLoadMore loading={data.loading} onClick={fetchMore} />
         )}
@@ -76,6 +65,5 @@ const options = (props) => ({
 })
 
 export default compose(
-  graphql(TransactionListQuery, {options}),
-  withStyles(styles)
+  graphql(TransactionListQuery, {options})
 )(TransactionList)
