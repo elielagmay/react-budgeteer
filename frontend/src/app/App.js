@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom'
 import { compose, graphql } from 'react-apollo'
-import injectSheet from 'react-jss'
+import { Reboot, withStyles } from 'material-ui'
 import Navbar from '../navbar/Navbar'
 import Sidebar from '../sidebar/Sidebar'
 import BudgetPage from '../budget/BudgetPage'
@@ -27,9 +27,8 @@ export const App = ({ classes, data }) => {
   return (
     <BrowserRouter>
       <div className={classes.root}>
-        <div className={classes.head}>
-          <Navbar user={data.user} />
-        </div>
+        <Reboot />
+        <Navbar user={data.user} />
         <div className={classes.side}>
           <Sidebar ledger={ledger} />
         </div>
@@ -51,5 +50,5 @@ export const App = ({ classes, data }) => {
 
 export default compose(
   graphql(userQuery),
-  injectSheet(styles)
+  withStyles(styles)
 )(App)
