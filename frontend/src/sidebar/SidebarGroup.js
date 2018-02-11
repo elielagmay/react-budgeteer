@@ -1,5 +1,5 @@
 import React from 'react'
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles'
 import { styles } from './styles'
 
 const SidebarGroup = ({ classes, title, children }) => (
@@ -9,5 +9,5 @@ const SidebarGroup = ({ classes, title, children }) => (
   </div>
 )
 
-export default injectSheet(styles)(SidebarGroup)
+export default withStyles(styles)(SidebarGroup)
 export { SidebarGroup }

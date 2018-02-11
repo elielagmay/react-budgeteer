@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles'
 import SidebarGroup from './SidebarGroup'
 import { styles } from './styles'
 
@@ -31,4 +31,4 @@ export const Sidebar = ({ classes, ledger }) => (
   </div>
 )
 
-export default withRouter(injectSheet(styles)(Sidebar))
+export default withRouter(withStyles(styles)(Sidebar))
