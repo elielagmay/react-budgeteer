@@ -1,68 +1,34 @@
 import React from 'react'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import injectSheet from 'react-jss'
 import SidebarGroup from './SidebarGroup'
-import { getPages, getAccounts } from './reducers'
-import { initialize } from './actions'
 import { styles } from './styles'
 
-class Sidebar extends React.Component {
-  componentWillMount () {
-    this.props.initialize()
-  }
+export const SIDEBAR_LINKS = [
+  {url: 'budgets', icon: 'flag', title: 'Budgets'},
+  {url: 'transactions', icon: 'compare_arrows', title: 'Transactions'},
+  {url: 'accounts', icon: 'account_balance', title: 'Accounts'},
+  {url: 'reports', icon: 'pie_chart', title: 'Reports'}
+]
 
-  render () {
-    const { pages, accounts, classes } = this.props
+export const Sidebar = ({ classes, ledger }) => (
+  <div className={classes.root}>
+    <SidebarGroup>
+      {SIDEBAR_LINKS.map(link => (
+        <NavLink
+          key={link.url}
+          to={'/ledger/' + ledger.id + '/' + link.url}
+          className={classes.link}
+          activeClassName='isActive'
+          exact={true}
+        >
+          <i className='material-icons'>{link.icon}</i>
+          <span>{link.title}</span>
+        </NavLink>
+      ))}
+    </SidebarGroup>
+  </div>
+)
 
-    return (
-      <div className={classes.root}>
-        <SidebarGroup>
-          {pages.map(page => (
-            <NavLink
-              key={page.url}
-              to={'/' + page.url}
-              className={classes.link}
-              activeClassName='isActive'
-              exact={true}
-            >
-              <i className='material-icons'>{page.icon}</i>
-              <span>{page.title}</span>
-            </NavLink>
-          ))}
-        </SidebarGroup>
-        <SidebarGroup title='Accounts'>
-          {accounts.map(account => (
-            <NavLink
-              key={account.id}
-              to={'/account/' + account.id}
-              className={classes.link}
-              activeClassName='isActive'
-              exact={true}
-            >
-              {account.title}
-            </NavLink>
-          ))}
-        </SidebarGroup>
-      </div>
-    )
-  }
-}
-
-const mapStateToProps = (state) => ({
-  pages: getPages(state),
-  accounts: getAccounts(state)
-})
-
-const mapDispatchToProps = {
-  initialize
-}
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps),
-  injectSheet(styles)
-)(Sidebar)
-export { Sidebar }
+export default withRouter(injectSheet(styles)(Sidebar))
