@@ -6,8 +6,8 @@ import error from 'material-ui/colors/red'
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: primary[500],
-      dark: primary[700],
+      main: primary[400],
+      dark: primary[500],
       light: primary[300],
       contrastText: '#FFFFFF'
     },
