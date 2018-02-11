@@ -38,7 +38,7 @@ export const styles = (theme) => ({
     height: '48px',
     lineHeight: '48px',
     overflow: 'hidden',
-    padding: '0 16px',
+    padding: `0 ${theme.spacing.unit * 3}px`,
     textDecoration: 'none',
     textOverflow: 'ellipsis',
     transition: 'all 150ms ease-in-out',
@@ -52,7 +52,7 @@ export const styles = (theme) => ({
     },
     '& .material-icons': {
       color: theme.palette.text.secondary,
-      marginRight: '36px',
+      marginRight: `${theme.spacing.unit * 3}px`,
       transition: 'all 150ms ease-in-out',
       verticalAlign: 'middle'
     },
