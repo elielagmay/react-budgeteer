@@ -34,22 +34,19 @@ export class TransactionList extends React.Component {
       notifyOnNetworkStatusChange: true,
       variables: {
         ledgerId: match.params.id,
-        cursor: data.ledger.transactions.pageInfo.endCursor
+        cursor: data.transactionList.pageInfo.endCursor
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.ledger.transactions.edges
-        const pageInfo = fetchMoreResult.ledger.transactions.pageInfo
+        const newEdges = fetchMoreResult.transactionList.edges
+        const pageInfo = fetchMoreResult.transactionList.pageInfo
         return newEdges.length ? {
-          ledger: {
-            __typename: previousResult.ledger.__typename,
-            transactions: {
-              __typename: previousResult.ledger.transactions.__typename,
-              pageInfo,
-              edges: [
-                ...previousResult.ledger.transactions.edges,
-                ...newEdges
-              ]
-            }
+          transactionList: {
+            __typename: previousResult.transactionList.__typename,
+            pageInfo,
+            edges: [
+              ...previousResult.transactionList.edges,
+              ...newEdges
+            ]
           },
         } : previousResult
       }
@@ -58,8 +55,8 @@ export class TransactionList extends React.Component {
 
   render () {
     const { classes, data } = this.props
-    const transactionList = data.ledger
-      ? data.ledger.transactions.edges.map(e => e.node)
+    const transactionList = data.transactionList
+      ? data.transactionList.edges.map(e => e.node)
       : []
 
     return (

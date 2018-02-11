@@ -5,19 +5,22 @@ export const transactionQuery = gql`
     $ledgerId: ID!
     $cursor: String!
   ) {
-    ledger (ledgerId: $ledgerId) {
-      transactions (after: $cursor, first: 50) @connection(key: "transactions") {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        edges {
-          node {
-            id
-            date
-            payee
-            description
-          }
+    transactionList (
+      ledgerId: $ledgerId,
+      after:
+      $cursor,
+      first: 50
+    ) @connection (key: "transactions") {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          id
+          date
+          payee
+          description
         }
       }
     }
