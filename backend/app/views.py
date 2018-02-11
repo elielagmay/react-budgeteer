@@ -38,4 +38,4 @@ def health_check(request):
     return HttpResponse('OK')
 
 
-graphql = csrf_exempt(login_required(GraphQLView.as_view(graphiql=True)))
+graphql = login_required(GraphQLView.as_view(graphiql=True))
