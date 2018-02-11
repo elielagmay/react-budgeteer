@@ -1,14 +1,28 @@
 import React from 'react'
 import { compose, graphql } from 'react-apollo'
+import { Button, CircularProgress } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
 import { transactionQuery } from './queries'
 
 export const styles = (theme) => ({
-  fetcher: {
-    height: '48px',
-    padding: `${theme.spacing.unit * 2}px 0`,
+  root: {
+    position: 'relative'
+  },
+  fetchMore: {
+    paddingTop: `${theme.spacing.unit * 3}px`,
+    position: 'relative',
     textAlign: 'center'
+  },
+  fetchInitProgress: {
+    position: 'absolute',
+    top: 'calc(50vh - 96px)',
+    left: 'calc(50% - 32px)',
+  },
+  fetchMoreProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: 'calc(50% - 12px)',
   }
 })
 
@@ -49,20 +63,28 @@ export class TransactionList extends React.Component {
       : []
 
     return (
-      <div>
+      <div className={classes.root}>
         {transactionList.map(transaction => (
           <Transaction
             key={transaction.id}
             transaction={transaction}
           />
         ))}
-        <div className={classes.fetcher}>
-          {data.loading ? (
-            <span>Loading transactions ...</span>
-          ) : (
-            <button onClick={this.fetchMore.bind(this)}>Load more</button>
-          )}
-        </div>
+        {transactionList.length === 0 ? (
+          <CircularProgress size={64} className={classes.fetchInitProgress} />
+        ) : (
+          <div className={classes.fetchMore}>
+            <Button
+              onClick={this.fetchMore.bind(this)}
+              disabled={data.loading}
+            >
+              Load more
+            </Button>
+            {!data.loading ? null : (
+              <CircularProgress size={24} className={classes.fetchMoreProgress} />
+            )}
+          </div>
+        )}
       </div>
     )
   }
