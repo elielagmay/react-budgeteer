@@ -18,10 +18,7 @@ export const styles = (theme) => ({
 
 export const CustomTextField = ({ classes, ...otherProps }) => (
   <TextField
-    inputProps={{
-      className: classes.native,
-      'data-date-format': 'DD MMMM YYYY'
-    }}
+    inputProps={{className: classes.native}}
     InputProps={{className: classes.input}}
     InputLabelProps={{className: classes.label, shrink: true}}
     {...otherProps}
