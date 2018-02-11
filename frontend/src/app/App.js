@@ -47,12 +47,8 @@ export const App = ({ classes, data }) => {
         <Sidebar ledger={ledger} />
         <div className={classes.root}>
           <Switch>
-            <Route path='/settings' component={NotFoundPage} />
-            <Route path='/ledgers' component={NotFoundPage} />
             <Route path='/ledger/:id/budgets' component={BudgetPage} />
             <Route path='/ledger/:id/transactions' component={TransactionList} />
-            <Route path='/ledger/:id/accounts' component={NotFoundPage} />
-            <Route path='/ledger/:id/reports' component={NotFoundPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
