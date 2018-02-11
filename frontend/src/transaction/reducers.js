@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
     [actions.TXN_LIST_EXPAND]: (payload) => ({
       ...state,
       expanded: {
+        ...state.expanded,
         [payload.transactionId]: true
       }
     }),
@@ -17,7 +18,8 @@ export default (state = initialState, action) => {
     [actions.TXN_LIST_COLLAPSE]: (payload) => ({
       ...state,
       expanded: {
-        [payload.transactionId]: false
+        ...state.expanded,
+        [payload.transactionId]: null
       }
     })
   }
@@ -28,4 +30,4 @@ export default (state = initialState, action) => {
 
 export const getRootState = (state) => state.transaction
 
-export const getExpanded = (state, id) => getRootState(state).expanded[id]
+export const getExpanded = (state, id) => !!getRootState(state).expanded[id]

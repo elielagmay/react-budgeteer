@@ -2,64 +2,111 @@ import moment from 'moment-timezone'
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles'
+import {
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  ExpansionPanelActions,
+  Typography,
+  Button
+} from 'material-ui'
+import ExpandMoreIcon from 'material-ui-icons/ExpandMore'
+import TextField from '../ui/TextField'
 import { expandTransaction, collapseTransaction } from './actions'
 import { getExpanded } from './reducers'
 import { styles } from './styles'
 
 export class Transaction extends React.Component {
-  expand () {
-    this.props.expandTransaction(this.props.transaction.id)
+  onToggle (event, expanded) {
+    if (expanded) {
+      this.props.expandTransaction(this.props.transaction.id)
+    } else {
+      this.props.collapseTransaction(this.props.transaction.id)
+    }
   }
 
-  collapse () {
+  onCollapse () {
     this.props.collapseTransaction(this.props.transaction.id)
   }
 
   render () {
-    const { classes, transaction, isExpanded } = this.props
+    const { classes, transaction, expanded } = this.props
     const date = moment.tz(transaction.date, moment.ISO_8601, 'UTC')
 
+    const icon = <ExpandMoreIcon />
+    const dateId = `txn-date-${transaction.id}`
+    const payeeId = `txn-payee-${transaction.id}`
+    const descriptionId = `txn-description-${transaction.id}`
+
     return (
-      <div
-        className={classes.transaction + (isExpanded ? ' isExpanded' : '')}
-        onClick={isExpanded ? null : this.expand.bind(this)}
-        aria-expanded={isExpanded}
-        role='button'
-        tabindex='0'
-      >
-        <div className={classes.fields}>
-          <input
-            className={classes.input}
-            defaultValue={date.format('DD MMM YYYY')}
-            readOnly={!isExpanded}
-          />
-          <input
-            className={classes.input}
-            defaultValue={transaction.payee}
-            readOnly={!isExpanded}
-            placeholder='Payee'
-          />
-          <input
-            className={classes.input}
-            defaultValue={transaction.description}
-            readOnly={!isExpanded}
-            placeholder='Description'
-          />
-          <i
-            className='material-icons'
-            onClick={isExpanded ? this.collapse.bind(this) : null}
-          >
-            {isExpanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
-          </i>
-        </div>
-      </div>
+      <ExpansionPanel expanded={expanded} onChange={this.onToggle.bind(this)}>
+        <ExpansionPanelSummary expandIcon={icon}>
+          {expanded ? (
+            <Typography className={classes.editTitle}>
+              Edit Transaction
+            </Typography>
+          ) : (
+            <div className={classes.fields}>
+              <Typography className={classes.date}>
+                {date.format('DD MMM YYYY')}
+              </Typography>
+              <Typography className={classes.payee}>
+                {transaction.payee}
+              </Typography>
+              <Typography className={classes.description}>
+                {transaction.description}
+              </Typography>
+            </div>
+          )}
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.details}>
+          <div className={classes.fields}>
+            <div className={classes.date}>
+              <TextField
+                type='date'
+                label='Date'
+                id={dateId}
+                defaultValue={date.format('YYYY-MM-DD')}
+                fullWidth
+                required
+              />
+            </div>
+            <div className={classes.payee}>
+              <TextField
+                type='text'
+                label='Payee'
+                id={payeeId}
+                defaultValue={transaction.payee}
+                fullWidth
+              />
+            </div>
+            <div className={classes.description}>
+              <TextField
+                type='text'
+                label='Description'
+                id={descriptionId}
+                defaultValue={transaction.description}
+                fullWidth
+              />
+            </div>
+          </div>
+        </ExpansionPanelDetails>
+        <ExpansionPanelActions>
+          <Button size='small' onClick={this.onCollapse.bind(this)}>
+            Cancel
+          </Button>
+          <Button size='small' color='primary'>
+            Save
+          </Button>
+        </ExpansionPanelActions>
+      </ExpansionPanel>
     )
   }
 }
 
 const mapStateToProps = (state, props) => ({
-  isExpanded: getExpanded(state, props.transaction.id)
+  expanded: getExpanded(state, props.transaction.id)
 })
 
 const mapDispatchToProps = {
@@ -69,5 +116,5 @@ const mapDispatchToProps = {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  injectSheet(styles)
+  withStyles(styles)
 )(Transaction)

@@ -1,112 +1,43 @@
-export const styles = {
+export const dateWidth = 120
+export const payeeWidth = 360
+
+export const styles = (theme) => ({
   root: {
-    padding: '16px 16px 16px 32px'
+    padding: `${theme.spacing.unit * 3}px`
   },
-  transaction: {
-    background: '#FFFFFF',
-    boxShadow: [
-      '0 1px 3px 0 rgba(0,0,0,0.24)',
-      '0 1px 1px 0 rgba(0,0,0,0.12)',
-      '0 2px 1px -1px rgba(0,0,0,0.12)'
-    ].join(', '),
-    cursor: 'pointer',
-    paddingTop: '12px',
-    paddingBottom: '12px',
-    paddingRight: '24px',
-    paddingLeft: '24px',
-    position: 'relative',
-    transition: 'all 160ms ease-in-out',
-    '&:before': {
-      backgroundColor: '#E0E0E0',
-      content: '""',
-      opacity: '1',
-      position: 'absolute',
-      top: '-1px',
-      left: '0',
-      right: '0',
-      height: '1px'
-    },
-    '&:last-child': {
-      borderRadius: '0 0 4px 4px'
-    },
-    '&:first-child': {
-      borderRadius: '4px 4px 0 0'
-    },
-    '&:first-child:before': {
-      opacity: '0'
-    },
-    '&.isExpanded:before': {
-      opacity: '0'
-    },
-    '&.isExpanded:not(:first-child)': {
-      marginTop: '16px'
-    },
-    '&.isExpanded:not(:last-child)': {
-      marginBottom: '16px'
-    },
-    '&.isExpanded': {
-      cursor: 'default',
-      paddingTop: '24px',
-      paddingBottom: '24px',
-    },
+  fetcher: {
+    height: '48px',
+    padding: `${theme.spacing.unit * 2}px 0`,
+    textAlign: 'center'
   },
   fields: {
     alignItems: 'center',
     display: 'flex',
-    overflow: 'hidden',
-    '&> .material-icons': {
-      color: 'rgba(0,0,0,0.54)',
-      cursor: 'pointer',
-      flex: '0 0 auto'
-    }
+    width: '100%'
   },
-  input: {
-    background: 'transparent',
-    border: '0',
-    color: 'rgba(0,0,0,0.87)',
-    borderBottom: '1px #E0E0E0 solid',
-    marginRight: '24px',
-    overflow: 'hidden',
-    transition: 'all 160ms linear',
-    textOverflow: 'ellipsis',
+  editTitle: {
+    fontWeight: theme.typography.fontWeightMedium
+  },
+  date: {
+    color: theme.palette.text.secondary,
+    flex: '0 0 auto',
+    marginRight: `${theme.spacing.unit * 2}px`,
     whiteSpace: 'nowrap',
-    ':not(.isExpanded) > $fields > &': {
-      cursor: 'pointer',
-    },
-    '&::placeholder': {
-      color: 'rgba(0,0,0,0.54)'
-    },
-    '&:read-only': {
-      color: 'rgba(0,0,0,0.54)',
-      cursor: 'inherit',
-      borderBottomColor: 'transparent',
-      '&::placeholder': {
-        color: 'transparent'
-      }
-    },
-    '&:nth-child(1)': {
-      flex: '0 0 auto',
-      width: '100px',
-    },
-    '&:nth-child(2)': {
-      color: 'rgba(0,0,0,0.87)',
-      flex: '0 0 30%'
-    },
-    '&:nth-child(3)': {
-      flex: '1 1 auto'
-    },
-    '&:focus': {
-      borderBottomColor: '#00BCD4'
-    },
+    width: `${dateWidth}px`
   },
-  spinner: {
-    height: '48px',
-    padding: '16px 0',
-    textAlign: 'center'
+  payee: {
+    flex: '0 0 33%',
+    marginRight: `${theme.spacing.unit * 2}px`,
+    maxWidth: `${payeeWidth}px`,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
   },
-  fetcher: {
-    height: '48px',
-    padding: '16px 0',
-    textAlign: 'center'
+  description: {
+    color: theme.palette.text.secondary,
+    flex: '1 1 auto',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
   }
-}
+})

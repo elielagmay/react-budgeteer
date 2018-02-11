@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose, graphql } from 'react-apollo'
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles'
 import Transaction from './Transaction'
 import { transactionQuery } from './queries'
 import { styles } from './styles'
@@ -49,13 +49,13 @@ export class TransactionList extends React.Component {
             transaction={transaction}
           />
         ))}
-        {data.loading ? (
-          <div className={classes.spinner}>Loading transactions ...</div>
-        ) : (
-          <div className={classes.fetcher}>
+        <div className={classes.fetcher}>
+          {data.loading ? (
+            <span>Loading transactions ...</span>
+          ) : (
             <button onClick={this.fetchMore.bind(this)}>Load more</button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     )
   }
@@ -71,5 +71,5 @@ const options = (props) => ({
 
 export default compose(
   graphql(transactionQuery, {options}),
-  injectSheet(styles)
+  withStyles(styles)
 )(TransactionList)
