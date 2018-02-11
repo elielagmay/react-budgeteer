@@ -1,12 +1,7 @@
 import React from 'react'
 
-class BudgetPage extends React.Component {
-  render () {
-    return (
-      <div className='BudgetPage'>Budget Page</div>
-    )
-  }
-}
+export const BudgetPage = ({ match }) => (
+  <div className='BudgetPage'>Budget Page - {match.params.id}</div>
+)
 
 export default BudgetPage
-export { BudgetPage }
