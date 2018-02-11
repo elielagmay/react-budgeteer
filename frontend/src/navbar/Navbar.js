@@ -3,9 +3,6 @@ import { AppBar, Toolbar, Typography } from 'material-ui'
 import { withStyles  } from 'material-ui/styles'
 
 export const styles = {
-  root: {
-    color: '#FFFFFF'
-  },
   logo: {
     letterSpacing: '2px',
     textTransform: 'uppercase',
@@ -17,7 +14,7 @@ export class Navbar extends React.Component {
   render () {
     const { classes, user } = this.props
     return (
-      <AppBar position='fixed' color='primary' className={classes.root}>
+      <AppBar position='fixed' color='secondary'>
         <Toolbar>
           <Typography variant='title' color='inherit' className={classes.logo}>
             Budgeteer

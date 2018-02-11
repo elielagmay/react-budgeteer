@@ -41,11 +41,11 @@ export const styles = (theme) => ({
     padding: '0 16px',
     textDecoration: 'none',
     textOverflow: 'ellipsis',
-    transition: 'all 150ms ease-in',
+    transition: 'all 150ms ease-in-out',
     userSelect: 'none',
     whiteSpace: 'nowrap',
     '&:hover': {
-      background: theme.palette.grey['300']
+      background: theme.palette.grey['200']
     },
     '&.isActive': {
       color: theme.palette.primary.main
@@ -53,6 +53,7 @@ export const styles = (theme) => ({
     '& .material-icons': {
       color: theme.palette.text.secondary,
       marginRight: '36px',
+      transition: 'all 150ms ease-in-out',
       verticalAlign: 'middle'
     },
     '&.isActive .material-icons': {
