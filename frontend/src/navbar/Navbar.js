@@ -3,15 +3,14 @@ import injectSheet from 'react-jss'
 import { styles } from './styles'
 
 class Navbar extends React.Component {
-  componentWillMount () {
-    // get current user
-  }
-
   render () {
-    const { classes } = this.props
+    const { classes, user } = this.props
     return (
       <div className={classes.root}>
-        <span className={classes.logo}>Budgeteer</span>
+        <div className={classes.logo}>Budgeteer</div>
+        <div className={classes.user}>
+          Hello {user.firstName}!
+        </div>
       </div>
     )
   }
