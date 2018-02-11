@@ -13,6 +13,7 @@
     "develop": "yarn install && babel-node webpack.server.js"
   },
   "dependencies": {
+    "apollo-client-preset": "^1.0.8",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -20,8 +21,11 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "graphql": "^0.13.0",
+    "graphql-tag": "^2.7.3",
     "moment-timezone": "^0.5.14",
     "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
     "react-jss": "^8.2.1",
     "react-redux": "^5.0.6",
@@ -29,6 +33,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "universal-cookie": "^2.1.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   }
