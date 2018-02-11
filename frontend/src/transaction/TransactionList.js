@@ -5,7 +5,7 @@ import Transaction from './Transaction'
 import { transactionQuery } from './queries'
 import { styles } from './styles'
 
-export class TransactionPage extends React.Component {
+export class TransactionList extends React.Component {
   fetchMore () {
     const { data, match } = this.props
     return data.fetchMore({
@@ -72,4 +72,4 @@ const options = (props) => ({
 export default compose(
   graphql(transactionQuery, {options}),
   injectSheet(styles)
-)(TransactionPage)
+)(TransactionList)

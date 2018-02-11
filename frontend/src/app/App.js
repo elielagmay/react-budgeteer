@@ -5,7 +5,7 @@ import injectSheet from 'react-jss'
 import Navbar from '../navbar/Navbar'
 import Sidebar from '../sidebar/Sidebar'
 import BudgetPage from '../budget/BudgetPage'
-import TransactionPage from '../transaction/TransactionPage'
+import TransactionList from '../transaction/TransactionList'
 import NotFoundPage from '../notFound/NotFoundPage'
 import { userQuery } from './queries'
 import { styles } from './styles'
@@ -38,7 +38,7 @@ export const App = ({ classes, data }) => {
             <Route path='/settings' component={NotFoundPage} />
             <Route path='/ledgers' component={NotFoundPage} />
             <Route path='/ledger/:id/budgets' component={BudgetPage} />
-            <Route path='/ledger/:id/transactions' component={TransactionPage} />
+            <Route path='/ledger/:id/transactions' component={TransactionList} />
             <Route path='/ledger/:id/accounts' component={NotFoundPage} />
             <Route path='/ledger/:id/reports' component={NotFoundPage} />
             <Route component={NotFoundPage} />
